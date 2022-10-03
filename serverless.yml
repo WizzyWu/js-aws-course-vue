@@ -7,7 +7,6 @@ provider:
   region: eu-west-1
   runtime: nodejs12.x
   # setup profile for AWS CLI.
-  # profile: node-aws
 
 plugins:
   - serverless-finch
@@ -18,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: popov-js-aws-course
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
