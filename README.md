@@ -4,7 +4,7 @@
 
 ## Task 1
 What was done:
-- Cloned Vue Fron App from repository
+- Cloned Vue From App from repository
 - Install dependencies
 - Registered in AWS
 - IAM user was created
@@ -15,7 +15,7 @@ What was done:
 What was done:
 - Task 2.1 Manual Deployment
     * In the AWS Console created and configured an S3 bucket.
-    * Builded and manually uploaded the MyShop! app to the created S3 bucket. Checked.
+    * Built and manually uploaded the MyShop! app to the created S3 bucket. Checked.
     * Created a CloudFront distribution for my app. Checked.
 - Task 2.2 Automated Deployment
     * Added and configure serverless and serverless-finch plugins.
