@@ -16,7 +16,7 @@
 			</p>
 
 			<p class="text-body2 text--secondary">
-				Copyright ©
+				Copyright © Vadim Popov v. 0.2.0
 				{{ $t('app.title') }}
 				{{ currentDate }}
 			</p>
