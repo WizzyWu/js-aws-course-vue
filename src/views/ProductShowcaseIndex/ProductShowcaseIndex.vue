@@ -7,17 +7,15 @@
 					sm="6"
 					md="4"
 					col="3"
-					v-for="(product, index) in products"
+					v-for="product in products"
 					:key="product.id"
 				>
 					<v-card class="pa-2" data-test-id="product-card" outlined tile>
-						<v-img
-							height="250"
-							:src="`https://source.unsplash.com/random?sig=${index}`"
-						></v-img>
+						<v-img height="250" :src="product.img" contain></v-img>
 
 						<v-card-title>{{ product.title }}</v-card-title>
 						<v-card-text>
+							<p class="my-4 subtitle-1">Author: {{ product.author }}</p>
 							<p class="my-4 subtitle-1">
 								{{ product.description }}
 							</p>
@@ -40,7 +38,8 @@
 								@increment="handleProductIncrement(product)"
 								@decrement="handleProductDecrement(product.id)"
 								:maxCount="product.count"
-							></v-add-product-to-cart>
+							>
+							</v-add-product-to-cart>
 						</v-card-actions>
 					</v-card>
 				</v-col>
@@ -82,6 +81,7 @@ export default Vue.extend({
 				.fetchAvailableProducts()
 				.then(products => {
 					this.products = products;
+					console.log('products', this.products);
 				})
 				.finally(() => {
 					this.isFetching = false;
