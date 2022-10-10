@@ -4,7 +4,7 @@
 * API (getProductsList): https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
 * API (getProductsById) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products/1
 * Repository: https://github.com/WizzyWu/js-aws-course-vue
-* PR Task 3:
+* PR Task 3: https://github.com/WizzyWu/js-aws-course-back/pull/1
 
 ### Frontend:
 * Repository: https://github.com/WizzyWu/js-aws-course-back
