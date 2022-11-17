@@ -1,48 +1,39 @@
 # Links
 
 ### Backend
-* API (getProductsList): https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
-* API (getProductsById) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products/1
+* API (getProductsList): (GET) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
+* API (getProductsById) (GET) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products/1
+* API (createProduct) (POST) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
+* API (importProductsFile) (GET) https://vpaqrxcv79.execute-api.eu-west-1.amazonaws.com/dev/import?name=test
 * Repository: https://github.com/WizzyWu/js-aws-course-vue
+### Backend PR's
 * PR Task 3: https://github.com/WizzyWu/js-aws-course-back/pull/1
+* PR Task 4: https://github.com/WizzyWu/js-aws-course-back/pull/2
+* PR Task 5: https://github.com/WizzyWu/js-aws-course-back/pull/3
 
-### Frontend:
+## Frontend:
 * Repository: https://github.com/WizzyWu/js-aws-course-back
-* PR Task 3 (this)
 * CloudFront distribution domain name: https://d29qcu9ke2ed75.cloudfront.net
 * S3 Static site host: http://popov-js-aws-course.s3-website-eu-west-1.amazonaws.com/
 * API documentation: https://d29qcu9ke2ed75.cloudfront.net/documentation/api.html
+### Frontend PR's
+* PR Task 2: https://github.com/WizzyWu/js-aws-course-vue/pull/1
+* PR Task 3: https://github.com/WizzyWu/js-aws-course-vue/pull/2
+* PR Task 5: https://github.com/WizzyWu/js-aws-course-vue/pull/3
 
+# Task 5
+## What was done:
+## Base tasks
+1 (DONE) File serverless.yml contains configuration for importProductsFile function
+3 (DONE) The importProductsFile lambda function returns a correct response which can be used to upload a file into the S3 bucket
+4 (DONE) Frontend application is integrated with importProductsFile lambda
+5 (DONE) The importFileParser lambda function is implemented and serverless.yml contains configuration for the lambda
+## Additional tasks
++1 (DONE) - async/await is used in lambda functions
++1 (-) - importProductsFile lambda is covered by unit tests. (for JS only) aws-sdk-mock can be used to mock S3 methods
++1 (DONE) - At the end of the stream the lambda function should move the file from the uploaded folder into the parsed folder (move the file means that file should be copied into a new folder in the same bucket called parsed, and then deleted from uploaded folder)
 
-
-
-## Task 1
-What was done:
-- Cloned Vue From App from repository
-- Install dependencies
-- Registered in AWS
-- IAM user was created
-- Using CLI, connected to my AWS account and got the created IAM user information
-
-
-# Task 2
-What was done:
-- Task 2.1 Manual Deployment
-    * In the AWS Console created and configured an S3 bucket.
-    * Built and manually uploaded the MyShop! app to the created S3 bucket. Checked.
-    * Created a CloudFront distribution for my app. Checked.
-- Task 2.2 Automated Deployment
-    * Added and configure serverless and serverless-finch plugins.
-    * Manually created CloudFront invalidation.
-    * Destroyed the created AWS infrastructure.
-    * Added and configured serverless-single-page-app-plugin.
-    * Added necessary npm script to build, upload, and invalidate app source code.
-    * Tested automated deployment.
-- Task 2.3
-    * Stored links to CloudFront URL and S3-website in README.md file.
-    * Commited all my work to separate branch.
-
-# Task 3 (CURRENT)
+# Task 3
 
 ## What was done:
 ## Base tasks
@@ -68,3 +59,28 @@ What was done:
     * I didn't complete this task due to errors (jest + typescript)
 6. (DONE) Lambda handlers (getProductsList, getProductsById) code is written not in 1 single module (file) and separated in codebase.
 7. (DONE) Main error scenarios are handled by API ("Product not found" 404 error). Example: https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products/345
+
+# Task 2
+What was done:
+- Task 2.1 Manual Deployment
+    * In the AWS Console created and configured an S3 bucket.
+    * Built and manually uploaded the MyShop! app to the created S3 bucket. Checked.
+    * Created a CloudFront distribution for my app. Checked.
+- Task 2.2 Automated Deployment
+    * Added and configure serverless and serverless-finch plugins.
+    * Manually created CloudFront invalidation.
+    * Destroyed the created AWS infrastructure.
+    * Added and configured serverless-single-page-app-plugin.
+    * Added necessary npm script to build, upload, and invalidate app source code.
+    * Tested automated deployment.
+- Task 2.3
+    * Stored links to CloudFront URL and S3-website in README.md file.
+    * Commited all my work to separate branch.
+
+## Task 1
+What was done:
+- Cloned Vue From App from repository
+- Install dependencies
+- Registered in AWS
+- IAM user was created
+- Using CLI, connected to my AWS account and got the created IAM user information
