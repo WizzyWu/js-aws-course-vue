@@ -56,16 +56,23 @@ const fetchPresignedS3Url = (url: string, fileName: string) => {
 		params: {
 			name: encodeURIComponent(fileName),
 		},
+		headers: {
+			Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
+		},
 	});
 };
 
 const uploadFileBy = async (url: string, file: File) => {
 	const destUrl = await fetchPresignedS3Url(url, file.name);
+	if (destUrl.status === 401 || destUrl.status === 403) {
+		const error = `Request to server was returned with status ${destUrl.status}`;
+		throw new Error(error);
+	}
 
 	console.info('Uploading to: ', destUrl.data);
 
 	// save
-	const result = await fetch(destUrl.data, {
+	const result = await fetch(destUrl.data.signedUrl, {
 		method: 'PUT',
 		body: file,
 	});
@@ -96,6 +103,10 @@ export default Vue.extend({
 			snackbarMessage: '',
 		};
 	},
+	created() {
+		const b = Buffer.from('WizzyWu:TEST_PASSWORD');
+		localStorage.setItem('authorization_token', b.toString('base64'));
+	},
 	methods: {
 		showUploadingStatus() {
 			this.isUploading = true;
@@ -116,7 +127,7 @@ export default Vue.extend({
 			try {
 				await uploadFileBy(this.url, this.file as File);
 			} catch (e) {
-				const msg = this.$t('errorMessage.cantUploadFile', {
+				const msg = this.$t(e.message || 'errorMessage.cantUploadFile', {
 					reason: e.message,
 				});
 
