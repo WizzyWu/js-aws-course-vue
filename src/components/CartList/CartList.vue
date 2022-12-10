@@ -1,32 +1,31 @@
 <template>
 	<v-list subheader>
-		<v-list-item v-for="cart in cartItems" :key="cart.product.id" class="px-0">
+		<v-list-item v-for="cart in cartItems" :key="cart.product_id" class="px-0">
 			<v-list-item-avatar size="inherit">
 				<v-add-product-to-cart
 					:isEditable="isEditable"
-					:maxCount="cart.product.count"
 					:initialCount="cart.count"
-					@increment="handleProductIncrement(cart.product)"
-					@decrement="handleProductDecrement(cart.product.id)"
+					@increment="handleProductIncrement(getProductById(cart.product_id))"
+					@decrement="handleProductDecrement(cart.product_id)"
 				></v-add-product-to-cart>
 			</v-list-item-avatar>
 
 			<v-list-item-content>
-				<v-list-item-title v-text="cart.product.title"></v-list-item-title>
+				<v-list-item-title v-text="getProductById(cart.product_id).title" ></v-list-item-title>
 
 				<v-list-item-subtitle
-					v-text="cart.product.description"
+					v-text="getProductById(cart.product_id).description"
 				></v-list-item-subtitle>
 			</v-list-item-content>
 
 			<v-list-item-action>
 				<v-list-item-title class="body2">
-					{{ formatPrice(cart.product.price) }}
+					{{ formatPrice(cart.product_price) }}
 					x
 					{{ cart.count }}
 
 					=
-					{{ formatPrice(cart.count * cart.product.price) }}
+					{{ formatPrice(cart.count * cart.product_price) }}
 				</v-list-item-title>
 			</v-list-item-action>
 		</v-list-item>
@@ -69,12 +68,13 @@ import Vue, { PropType } from 'vue';
 import { formatter as priceFormatter } from '@/libs/price';
 import { CartItem } from '@/models/cart-item';
 import { Product } from '@/models/product';
+import { productApi } from '@/api/product-api';
 
 import { VAddProductToCart } from '@/components/AddProductToCart';
 import VCatchAttention from '@/components/Animation/CatchAttention.vue';
 
 const sum = (total: number, item: CartItem) => {
-	return item.count * item.product.price + total;
+	return item.count * item.product_price + total;
 };
 
 export default Vue.extend({
@@ -88,7 +88,32 @@ export default Vue.extend({
 			return this.cartItems.reduce(sum, 0);
 		},
 	},
+	data () {
+		return {
+			products: [] as Product[],
+			isFetching: false,
+		};
+	},
+	created() {
+		this.fetchProducts();
+	},
 	methods: {
+		getProductById (productId: string): Product {
+			return this.products.filter(product => product.id === productId).pop() || { id: '', title: '', description: '', author: '', img: '', price: 0, count: 0 };
+		},
+		fetchProducts() {
+			this.isFetching = true;
+
+			productApi
+				.fetchAvailableProducts()
+				.then(products => {
+					this.products = products;
+					console.log('products', this.products);
+				})
+				.finally(() => {
+					this.isFetching = false;
+				});
+		},
 		formatPrice(price: number) {
 			return priceFormatter.number(price);
 		},

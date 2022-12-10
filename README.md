@@ -1,15 +1,19 @@
 # Links
 
-### Backend
+## Backend
 * API (getProductsList): (GET) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
 * API (getProductsById) (GET) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products/1
 * API (createProduct) (POST) https://te38q1ychd.execute-api.eu-west-1.amazonaws.com/dev/products
 * API (importProductsFile) (GET) https://vpaqrxcv79.execute-api.eu-west-1.amazonaws.com/dev/import?name=test
+* API (rs-cart-service) (GET) https://43otjkikv9.execute-api.eu-west-1.amazonaws.com/dev/api/profile/cart
 * Repository: https://github.com/WizzyWu/js-aws-course-vue
 ### Backend PR's
 * PR Task 3: https://github.com/WizzyWu/js-aws-course-back/pull/1
 * PR Task 4: https://github.com/WizzyWu/js-aws-course-back/pull/2
 * PR Task 5: https://github.com/WizzyWu/js-aws-course-back/pull/3
+* PR Task 6: https://github.com/WizzyWu/js-aws-course-back/pull/4
+* PR Task 7: https://github.com/WizzyWu/js-aws-course-back/pull/5
+* PR Task 7: https://github.com/WizzyWu/js-aws-course-back/pull/6
 
 ## Frontend:
 * Repository: https://github.com/WizzyWu/js-aws-course-back
@@ -20,6 +24,36 @@
 * PR Task 2: https://github.com/WizzyWu/js-aws-course-vue/pull/1
 * PR Task 3: https://github.com/WizzyWu/js-aws-course-vue/pull/2
 * PR Task 5: https://github.com/WizzyWu/js-aws-course-vue/pull/3
+* PR Task 7: https://github.com/WizzyWu/js-aws-course-vue/pull/4
+* PR Task 7: https://github.com/WizzyWu/js-aws-course-vue/pull/5
+
+# Task 8
+
+## What was done:
+## Base tasks
+1 (DONE) - Task 8.1 is implemented. Link to deployed AWS Lambda. 
+https://43otjkikv9.execute-api.eu-west-1.amazonaws.com/dev
+Example of cart request: https://43otjkikv9.execute-api.eu-west-1.amazonaws.com/dev/api/profile/cart 
+3 (DONE) - Task 8.2 is implemented. 
+4 (DONE) - Task 8.3 is implemented lambda links are provided and cart's data is stored in DB
+## Additional tasks
++1 (-) - Create orders table and integrated with it Order model.
++1 (-) - Create users table and integrate with it
++1 (-) - Transaction based creation of checkout
++1 (DONE) - Integrate Cart service with FE repository.
+- On page load ( https://d29qcu9ke2ed75.cloudfront.net) there is request to backend that gets stored in db cart's data and items. FE shows number of items in cart on cart's icon.
+- Adding a product to the cart, removing a product from the cart
+- Checkout page with list of the products in the cart (https://d29qcu9ke2ed75.cloudfront.net/cart).
+
+# Task 7
+
+## What was done:
+## Base tasks
+1 (DONE Backend) - authorization-service is added to the repo, has correct basicAuthorizer lambda and correct serverless.yaml file
+3 (DONE Backend) - Import Service serverless.yaml file has authorizer configuration for the importProductsFile lambda. Request to the importProductsFile lambda should work only with correct authorization_token being decoded and checked by basicAuthorizer lambda. Response should be in 403 HTTP status if access is denied for this user (invalid authorization_token) and in 401 HTTP status if Authorization header is not provided.
+5 (DONE Frontend) - Client application is updated to send "Authorization: Basic authorization_token" header on import. Client should get authorization_token value from browser localStorage
+## Additional tasks
++1 (DONE Frontend) - Client application should display alerts for the responses in 401 and 403 HTTP statuses. This behavior should be added to the nodejs-aws-fe-main/src/index.tsx file.
 
 # Task 5
 ## What was done:
