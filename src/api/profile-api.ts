@@ -6,8 +6,14 @@ import { CartItem } from '@/models/cart-item';
 // TODO: ASK, same verb
 
 interface FetchCartResponse {
+	[x: string]: any;
 	data: {
-		data: CartItem;
+		[x: string]: any;
+		data: {
+			cart: {
+				items: CartItem[];
+			};
+		};
 	};
 }
 
