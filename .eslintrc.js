@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     "plugin:vue/essential",
     "@vue/typescript/recommended",
-    'plugin:prettier/recommended',
+    //'plugin:prettier/recommended',
     "plugin:clean-regex/recommended",
   ],
   parserOptions: {

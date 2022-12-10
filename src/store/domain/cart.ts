@@ -12,7 +12,7 @@ import { CartItem } from '@/models/cart-item';
 // const defaultCarts = JSON.parse(localStorageValue);
 
 const findProductInCartById = (cart: CartItem[], productId: string) =>
-	cart.find((c: CartItem) => c.product.id === productId);
+	cart.find((c: CartItem) => c.product_id === productId);
 
 interface CartState {
 	cartItems: CartItem[];
@@ -40,7 +40,7 @@ const cartModuleStore: Module<CartState, any> = {
 			if (existingCartItem) {
 				existingCartItem.count += 1;
 			} else {
-				cartItems.push({ product, count: 1 });
+				cartItems.push({ product_id: product.id, count: 1, product_price: product.price });
 			}
 
 			state.cartItems = [...cartItems];
@@ -57,7 +57,7 @@ const cartModuleStore: Module<CartState, any> = {
 
 			if (existingCartItem.count < 1) {
 				state.cartItems = cartItems.filter(
-					(c: CartItem) => c.product.id !== productId
+					(c: CartItem) => c.product_id !== productId
 				);
 
 				return;
